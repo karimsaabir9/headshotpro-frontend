@@ -9,3 +9,8 @@ export interface RegisterInput {
 export interface RegisterResponse {
   user: User;
 }
+
+export interface VerifyEmailResponse {
+  success: boolean;
+  message: string;
+}
