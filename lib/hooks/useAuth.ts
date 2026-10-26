@@ -17,3 +17,9 @@ export function useVerifyemail() {
     mutationFn: (token: string) => authService.verifyEmail(token),
   });
 }
+
+export function useResendVerification() {
+  return useMutation({
+    mutationFn: (email: string) => authService.resendVerification(email),
+  });
+}

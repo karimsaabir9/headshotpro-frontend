@@ -1,6 +1,6 @@
 import React from "react";
 
-const RegisterLayout = ({ children }: { children: React.ReactNode }) => {
+const VerifyLayout = ({ children }: { children: React.ReactNode }) => {
   return children;
 };
-export default RegisterLayout;
+export default VerifyLayout;

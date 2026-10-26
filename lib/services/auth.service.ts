@@ -13,4 +13,12 @@ export const authService = {
   verifyEmail: async (token: string): Promise<VerifyEmailResponse> => {
     return api.get<VerifyEmailResponse>(`/auth/verify-email?token=${token}`);
   },
+
+  // resend verification email
+
+  resendVerification: async (email: string): Promise<VerifyEmailResponse> => {
+    return api.post<VerifyEmailResponse>("/auth/resend-verification", { email });
+  }
+
+
 };
