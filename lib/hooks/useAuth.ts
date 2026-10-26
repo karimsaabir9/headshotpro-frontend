@@ -1,5 +1,5 @@
-import { useMutation } from "@tanstack/react-query";
-import { RegisterInput } from "@/lib/types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { LoginInput, RegisterInput } from "@/lib/types";
 import { authService } from "@/lib/services";
 
 export const authKeys = {
@@ -21,5 +21,16 @@ export function useVerifyemail() {
 export function useResendVerification() {
   return useMutation({
     mutationFn: (email: string) => authService.resendVerification(email),
+  });
+}
+
+export function useLogin() {
+  // const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (data: LoginInput) => authService.login(data),
+    // onSuccess: () => {
+    //     queryClient.invalidateQueries({ queryKey: authKeys.currentUser() })
+    // }
   });
 }
