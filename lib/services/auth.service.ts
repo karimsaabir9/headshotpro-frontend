@@ -1,5 +1,5 @@
 import { api } from "../api";
-import { LoginInput, LoginResponse, RegisterInput, RegisterResponse, VerifyEmailResponse } from "../types";
+import { CurrentUserResponse, LoginInput, LoginResponse, RegisterInput, RegisterResponse, VerifyEmailResponse } from "../types";
 
 export const authService = {
   //  register new user
@@ -24,4 +24,13 @@ export const authService = {
   login: async(data: LoginInput) : Promise<LoginResponse> => {
     return api.post<LoginResponse>('/auth/login', data)
 },
+
+ // get current user
+
+ getCurrentUser: async() : Promise<CurrentUserResponse> => {
+  return api.get<CurrentUserResponse>('/auth/me')
+},
+
+
+
 };

@@ -23,3 +23,8 @@ export interface LoginInput {
 export interface LoginResponse {
   User: User; 
 }
+
+
+export interface CurrentUserResponse {
+  user: User;
+}
