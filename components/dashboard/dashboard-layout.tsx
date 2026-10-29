@@ -8,7 +8,8 @@ import React from "react";
 import { Button } from "../ui/button";
 import { Icon, LogOut } from "lucide-react";
 import { getNavigationConfig } from "@/lib/config/navigation.config";
-// import { ThemeToggle } from "@/components/theme-toggle";
+import { ThemeToggle } from "../theme-toggle";
+
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -50,7 +51,7 @@ const DashboardLayout = ({ children, onLogout }: DashboardLayoutProps) => {
           {/* Right Side - Theme Toggle, User & Logout */}
           <div className="flex items-center gap-3">
             {/*Theme toggle */}
-            {/* <ThemeToggle /> */}
+            <ThemeToggle />
             <div className="text-right">
               <p className="text-sm font-medium text-foreground">
                 {user?.name || "User"}
