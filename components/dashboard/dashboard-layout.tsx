@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { Button } from "../ui/button";
 import { Icon, LogOut } from "lucide-react";
-// import { getNavigationConfig } from "@/lib/config/navigation.config";
+import { getNavigationConfig } from "@/lib/config/navigation.config";
 // import { ThemeToggle } from "@/components/theme-toggle";
 
 interface DashboardLayoutProps {
@@ -26,12 +26,12 @@ const DashboardLayout = ({ children, onLogout }: DashboardLayoutProps) => {
 
   const userRole = user?.role;
 
-//   const navigationItems = getNavigationConfig(userRole);
+  const navigationItems = getNavigationConfig(userRole);
 
 
   const handleLogout = () => {
     logout();
-    router.push("/auth/login");
+    router.push("/login");
   };
 
   return (
@@ -77,7 +77,7 @@ const DashboardLayout = ({ children, onLogout }: DashboardLayoutProps) => {
         <div className="flex gap-6">
           {/* sidebar */}
         
-          {/* {navigationItems.length > 0 && (
+          {navigationItems.length > 0 && (
             <aside className="hidden w048 shrink-0 md:block">
               <nav className="space-y-1">
                 {navigationItems.map((item) => {
@@ -117,7 +117,7 @@ const DashboardLayout = ({ children, onLogout }: DashboardLayoutProps) => {
                 })}
               </nav>
             </aside>
-          )} */}
+          )}
           {/* Main Content Area */}
           <main className="flex-1 min-w-0">{children}</main>
         </div>
