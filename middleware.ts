@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  // handle dashbaord layout
+  // handle dashboard layout
 
   if (isDashboard) {
     // No token provided
