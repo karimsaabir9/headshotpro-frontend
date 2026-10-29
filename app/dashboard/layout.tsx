@@ -17,7 +17,7 @@ const DashboardRootLayout = async ({
   const user = await getCurrentUserServer();
 
   if (!user) {
-    redirect("/login");
+    redirect("/auth/login");
   }
 
   return (

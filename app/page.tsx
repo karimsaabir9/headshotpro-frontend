@@ -21,7 +21,7 @@ export default function Home() {
           </Button>
         </>
       ) : (
-        <Link href="/login" className="text-xl font-bold mb-4">
+        <Link href="/auth/login" className="text-xl font-bold mb-4">
           Login
         </Link>
       )}
