@@ -1,9 +1,13 @@
+import DashboardLayout from "@/components/dashboard/dashboard-layout";
 import { UserProvider } from "@/lib/context";
-import { getCurrentUserServer } from "@/lib/util";
+import { getCurrentUserServer } from "@/lib/util/auth-server";
 import { redirect } from "next/navigation";
-import React from "react";
 
-const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
+const DashboardRootLayout = async ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   // Server side checking if user is authenticated
 
   const user = await getCurrentUserServer();
@@ -11,7 +15,13 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
   if (!user) {
     redirect("/login");
   }
-  return <UserProvider user={user}>{children}</UserProvider>;
+
+  return (
+    <UserProvider user={user}>
+      {/* Dashboard Layout */}
+      <DashboardLayout>{children}</DashboardLayout>
+    </UserProvider>
+  );
 };
 
-export default DashboardLayout;
+export default DashboardRootLayout;

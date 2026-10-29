@@ -31,6 +31,8 @@ export const authService = {
   return api.get<CurrentUserResponse>('/auth/me')
 },
 
-
+logout: async() : Promise<void> => {
+  return api.post<void>('/auth/logout')
+}
 
 };
