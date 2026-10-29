@@ -1,7 +1,10 @@
-import { cookies } from "next/headers";
-import { User } from "../types";
 
-export async function getCurrentUserServer() {
+import { cookies, headers } from "next/headers";
+import { User } from "..";
+
+import {cache} from "react";
+
+export const getCurrentUserServer = cache(async () => {
   const cookieStore = await cookies();
 
   const accessToken = cookieStore.get("accessToken")?.value;
@@ -22,7 +25,7 @@ export async function getCurrentUserServer() {
         },
         credentials: "include",
         cache: "no-store",
-      },
+      }
     );
 
     if (!response.ok) {
@@ -32,8 +35,9 @@ export async function getCurrentUserServer() {
     const { data } = await response.json();
 
     return data?.user as User;
+
   } catch (error) {
     console.error("Error fetching current user:", error);
     return null;
   }
-}
+});
