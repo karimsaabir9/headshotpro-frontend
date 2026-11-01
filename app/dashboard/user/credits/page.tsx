@@ -1,6 +1,12 @@
 "use client";
-
-import { CreditPackageCard, CreditsHeader, LocalPaymentForm, PaymentHistory, PaymentMethodSelector, StripeCheckoutSection } from "@/components/payment";
+import {
+  CreditPackageCard,
+  CreditsHeader,
+  LocalPaymentForm,
+  PaymentHistory,
+  PaymentMethodSelector,
+  StripeCheckoutSection
+} from "@/components/payment";
 import { useUser } from "@/lib/context/user-context";
 import {
   useGetCreditPackages,
@@ -61,7 +67,7 @@ const CreditsPage = () => {
     processPayment({
       packageId: selectedPackageId,
       platform: "STRIPE",
-      successUrl: `${frontendUrl}/verify-payment?session_id={CHECKOUT_SESSION_ID}`,
+      successUrl: `${frontendUrl}/verify-payment`,
       cancelUrl: `${frontendUrl}/dashboard/user/credits?status=cancel`,
     });
   };
