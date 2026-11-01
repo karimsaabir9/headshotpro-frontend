@@ -61,7 +61,7 @@ const CreditsPage = () => {
     processPayment({
       packageId: selectedPackageId,
       platform: "STRIPE",
-      successUrl: `${frontendUrl}/verify-payment`,
+      successUrl: `${frontendUrl}/verify-payment?session_id={CHECKOUT_SESSION_ID}`,
       cancelUrl: `${frontendUrl}/dashboard/user/credits?status=cancel`,
     });
   };
