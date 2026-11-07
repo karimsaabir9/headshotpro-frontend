@@ -5,7 +5,7 @@ import { AlertCircle, CheckCircle2, Loader2, XCircle } from "lucide-react";
 import Link from "next/link";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { toast } from "sonner";
 
 function VerifyEmailContent () {
@@ -17,14 +17,22 @@ function VerifyEmailContent () {
 
   const token = searchParams.get("token");
 
-  // No token provided
-
+  // Guard: verification tokens are single-use. React StrictMode runs effects
+  // twice in dev, which would fire a second verify call with an already-used
+  // token and show a false "Invalid verification token" error. The ref ensures
+  // mutate runs only once per mount.
+  const hasVerified = useRef(false);
 
   useEffect(()=> {
 
     if(!token){
         return;
     }
+
+    if (hasVerified.current) {
+        return;
+    }
+    hasVerified.current = true;
 
     mutate(token, {
         onSuccess: () => {
@@ -63,7 +71,7 @@ function VerifyEmailContent () {
               Invalid verification link. No token provided.
             </p>
             <div className="mt-6">
-              <Link href="/resend-verification">
+              <Link href="/auth/resend-verification">
                 <Button className="w-full">Resend Verification Email</Button>
               </Link>
             </div>
@@ -125,10 +133,10 @@ function VerifyEmailContent () {
                 "Failed to verify email. The link may have expired."}
             </p>
             <div className="mt-6 flex flex-col gap-4">
-              <Link href="/resend-verification">
+              <Link href="/auth/resend-verification">
                 <Button className="w-full">Resend Verification Email</Button>
               </Link>
-              <Link href="/register">
+              <Link href="/auth/register">
                 <Button variant="outline" className="w-full">
                   Back to Register
                 </Button>
