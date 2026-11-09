@@ -37,8 +37,6 @@ const CreditsPage = () => {
   const { mutate: processPayment, isPending: isVerifying } =
     useProcessPayment();
 
-  //  TODO : Payment history
-
   const { data: paymentHistory, isLoading: isLoadingPaymentHistory } =
     useGetPaymentHistory(10);
 

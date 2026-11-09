@@ -20,11 +20,11 @@ import {
 } from "lucide-react";
 
 const styles = [
-  { name: "Professional", blurb: "Clean corporate look, studio lighting" },
-  { name: "Casual", blurb: "Relaxed and friendly, soft natural light" },
-  { name: "Creative", blurb: "Artistic styling with bold color" },
-  { name: "Executive", blurb: "High-end, formal, confident" },
-  { name: "LinkedIn", blurb: "Polished profile-ready portrait" },
+  { name: "Professional", blurb: "Clean corporate look, studio lighting", img: "https://i.pravatar.cc/480?img=12" },
+  { name: "Casual", blurb: "Relaxed and friendly, soft natural light", img: "https://i.pravatar.cc/480?img=5" },
+  { name: "Creative", blurb: "Artistic styling with bold color", img: "https://i.pravatar.cc/480?img=47" },
+  { name: "Executive", blurb: "High-end, formal, confident", img: "https://i.pravatar.cc/480?img=60" },
+  { name: "LinkedIn", blurb: "Polished profile-ready portrait", img: "https://i.pravatar.cc/480?img=32" },
 ];
 
 const features = [
@@ -167,11 +167,15 @@ export default function Home() {
             {styles.slice(0, 4).map((s) => (
               <div
                 key={s.name}
-                className="group relative aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-muted to-card"
+                className="group relative aspect-[3/4] overflow-hidden rounded-2xl border border-border bg-muted"
               >
-                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/40">
-                  <Camera className="size-10" />
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={s.img}
+                  alt={`${s.name} headshot example`}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 to-transparent p-3 text-left">
                   <p className="text-sm font-medium">{s.name}</p>
                 </div>
@@ -257,12 +261,20 @@ export default function Home() {
         </div>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {styles.map((s) => (
-            <div key={s.name} className="rounded-2xl border border-border bg-card p-5">
-              <div className="mb-3 flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Sparkles className="size-5" />
+            <div key={s.name} className="group overflow-hidden rounded-2xl border border-border bg-card">
+              <div className="aspect-square overflow-hidden bg-muted">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={s.img}
+                  alt={`${s.name} headshot example`}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
-              <h3 className="font-heading font-medium">{s.name}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{s.blurb}</p>
+              <div className="p-5">
+                <h3 className="font-heading font-medium">{s.name}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{s.blurb}</p>
+              </div>
             </div>
           ))}
         </div>
