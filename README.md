@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HeadshotPro — Frontend
 
-## Getting Started
+Web app for **HeadshotPro**, an AI headshot generator. Users sign up, buy
+credits, upload a photo, and generate professional headshots in multiple
+styles. Built with **Next.js 16 (App Router) + React 19 + TypeScript**.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Marketing **landing page** with pricing and style showcase
+- **Auth** — register, email verification, resend verification, login
+  (httpOnly cookie sessions, token refresh via the proxy middleware)
+- **User dashboard** — buy credits (Stripe), upload photos, generate and view
+  headshots
+- **Admin dashboard** — manage users (roles, credits, delete) and view orders
+- Light/dark theme, toast notifications, and React Query data fetching
+
+## Tech stack
+
+Next.js 16 (Turbopack) · React 19 · TypeScript · Tailwind CSS ·
+shadcn/ui (Base UI) · TanStack React Query · Axios · React Hook Form + Zod ·
+next-themes · sonner · lucide-react
+
+## Prerequisites
+
+- [Bun](https://bun.com) (or Node 20+)
+- The [HeadshotPro backend](https://github.com/karimsaabir9/headshotpro-backend)
+  running locally (defaults to `http://localhost:8000`)
+
+## Environment variables
+
+Create a `.env` file in the project root:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun install   # install dependencies
+bun run dev   # start the dev server (http://localhost:3000)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Other scripts:
 
-## Learn More
+```bash
+bun run build # production build
+bun run start # run the production build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+  page.tsx            # landing page
+  auth/               # login, register, resend-verification, verify-email
+  dashboard/
+    user/             # credits, headshots
+    admin/            # users, orders
+  verify-payment/     # Stripe return page
+components/ui/         # shadcn/ui (Base UI) components
+lib/
+  api/                # axios client (withCredentials, refresh interceptor)
+  services/           # auth, payment, headshot, admin services
+  hooks/              # React Query hooks
+  query/              # React Query provider
+proxy.ts              # route protection middleware (Next.js 16 proxy)
+```
 
-## Deploy on Vercel
+## Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `proxy.ts` (Next.js 16's renamed middleware) guards `/dashboard` and `/auth`
+  routes and refreshes expired access tokens.
+- The axios client sends cookies (`withCredentials`) and transparently retries
+  once after refreshing the session on a 401.
