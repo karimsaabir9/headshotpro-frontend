@@ -11,6 +11,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Button } from "@/components/ui/button";
 import { useRegister } from "@/lib/hooks/useAuth";
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -144,8 +145,7 @@ const RegisterPage = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input
-                      type="password"
+                    <PasswordInput
                       placeholder="••••••••"
                       autoComplete="new-password"
                       {...field}
