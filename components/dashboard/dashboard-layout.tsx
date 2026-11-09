@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import { Button } from "../ui/button";
-import { Icon, LogOut } from "lucide-react";
+import { LogOut, Sparkles } from "lucide-react";
 import { getNavigationConfig } from "@/lib/config/navigation.config";
 import { ThemeToggle } from "../theme-toggle";
 
@@ -43,9 +43,14 @@ const DashboardLayout = ({ children, onLogout }: DashboardLayoutProps) => {
           {/* Logo */}
           <Link
             href={"/"}
-            className="text-lg font-semibold text-foreground"
+            className="flex items-center gap-2 font-heading text-lg font-semibold text-foreground"
           >
-            Headshot Pro Build
+            <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <Sparkles className="size-4" />
+            </span>
+            <span>
+              Headshot<span className="text-primary">Pro</span>
+            </span>
           </Link>
 
           {/* Right Side - Theme Toggle, User & Logout */}
