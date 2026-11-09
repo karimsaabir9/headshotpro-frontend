@@ -85,6 +85,11 @@ export default function Home() {
   const { data: currentUser } = useCurrentUser();
   const isAuthed = !!currentUser?.user;
 
+  // Compute the year after mount so the prerender doesn't see an unstable
+  // `new Date()` at render time (Next.js 16 flags that in client components).
+  const [year, setYear] = useState(2026);
+  useEffect(() => setYear(new Date().getFullYear()), []);
+
   const primaryHref = isAuthed ? "/dashboard/user" : "/auth/register";
   const primaryLabel = isAuthed ? "Go to Dashboard" : "Get Started Free";
 
@@ -368,7 +373,7 @@ export default function Home() {
             </span>
             HeadshotPro
           </div>
-          <p>© {new Date().getFullYear()} HeadshotPro. All rights reserved.</p>
+          <p>© {year} HeadshotPro. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <Link href="/auth/login" className="transition-colors hover:text-foreground">Log in</Link>
             <Link href="/auth/register" className="transition-colors hover:text-foreground">Sign up</Link>
