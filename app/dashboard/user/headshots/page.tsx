@@ -19,6 +19,9 @@ const HeadshotsPage = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedStyles, setSelectedStyles] = useState<HeadshotStyle[]>([]);
   const [customPrompt, setCustomPrompt] = useState<string>("");
+  // Bumping this remounts <PhotoUpload> so its internal file/preview clears
+  // after a successful submit (it keeps its own state, not just the parent's).
+  const [formKey, setFormKey] = useState(0);
 
   // TanStack Query hooks
   const { data: stylesData } = useHeadshotStyles();
@@ -53,6 +56,7 @@ const HeadshotsPage = () => {
           setSelectedFile(null);
           setSelectedStyles([]);
           setCustomPrompt("");
+          setFormKey((k) => k + 1); // clear the PhotoUpload preview too
         },
         onError: (error: any) => {
           const message =
@@ -100,6 +104,7 @@ const HeadshotsPage = () => {
               Upload Your Photo
             </label>
             <PhotoUpload
+              key={formKey}
               onUploadSuccess={setSelectedFile}
               onUploadError={(error: string) => toast.error(error)}
             />
