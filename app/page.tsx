@@ -102,7 +102,9 @@ export default function Home() {
             <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <Sparkles className="size-4" />
             </span>
-            Headshot<span className="text-primary">Pro</span>
+            <span>
+              Headshot<span className="text-primary">Pro</span>
+            </span>
           </Link>
           <nav className="hidden items-center gap-6 text-sm text-muted-foreground sm:flex">
             <a href="#features" className="transition-colors hover:text-foreground">Features</a>
@@ -371,7 +373,9 @@ export default function Home() {
             <span className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <Sparkles className="size-3.5" />
             </span>
-            Headshot<span className="text-primary">Pro</span>
+            <span>
+              Headshot<span className="text-primary">Pro</span>
+            </span>
           </div>
           <p>© {year} HeadshotPro. All rights reserved.</p>
           <div className="flex items-center gap-4">
