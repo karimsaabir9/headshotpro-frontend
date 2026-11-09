@@ -84,9 +84,9 @@ export default function UserDashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 animate-in fade-in slide-in-from-bottom-3 duration-500">
         {stats.map((s) => (
-          <div key={s.label} className="rounded-2xl border border-border bg-card p-5">
+          <div key={s.label} className="rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
             <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
               <s.icon className={`size-5 ${s.spin ? "animate-spin" : ""}`} />
             </div>
@@ -116,12 +116,12 @@ export default function UserDashboardPage() {
       )}
 
       {/* Quick actions */}
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-3 animate-in fade-in slide-in-from-bottom-3 duration-500">
         {actions.map((a) => (
           <Link
             key={a.title}
             href={a.href}
-            className="group rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/50"
+            className="group rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"
           >
             <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
               <a.icon className="size-5" />
@@ -159,7 +159,7 @@ export default function UserDashboardPage() {
             {recentImages.map((img) => (
               <div
                 key={img.key}
-                className="group relative aspect-square overflow-hidden rounded-2xl border border-border bg-muted"
+                className="group relative aspect-square overflow-hidden rounded-2xl border border-border bg-muted transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

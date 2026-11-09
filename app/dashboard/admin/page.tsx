@@ -52,9 +52,9 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 animate-in fade-in slide-in-from-bottom-3 duration-500">
         {stats.map((s) => (
-          <Card key={s.label} className="p-5">
+          <Card key={s.label} className="p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
             <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
               <s.icon className="size-5" />
             </div>
@@ -67,9 +67,9 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Management links */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in slide-in-from-bottom-3 duration-500">
         <Link href="/dashboard/admin/users">
-          <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+          <Card className="p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/40 cursor-pointer">
             <div className="flex items-center gap-4">
               <div className="rounded-lg bg-primary/10 p-4">
                 <Users className="h-8 w-8 text-primary" />
@@ -85,7 +85,7 @@ export default function AdminDashboardPage() {
         </Link>
 
         <Link href="/dashboard/admin/orders">
-          <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer">
+          <Card className="p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-primary/40 cursor-pointer">
             <div className="flex items-center gap-4">
               <div className="rounded-lg bg-primary/10 p-4">
                 <ShoppingCart className="h-8 w-8 text-primary" />

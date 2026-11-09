@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/lib/hooks";
 import Link from "next/link";
+import { Reveal } from "@/components/reveal";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import {
@@ -218,9 +219,9 @@ export default function Home() {
             Built on a modern, secure stack so your headshots are fast, private and consistent.
           </p>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((f) => (
-            <div key={f.title} className="rounded-2xl border border-border bg-card p-6">
+            <div key={f.title} className="rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
               <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <f.icon className="size-5" />
               </div>
@@ -228,7 +229,7 @@ export default function Home() {
               <p className="mt-2 text-sm text-muted-foreground">{f.desc}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {/* How it works */}
@@ -239,7 +240,7 @@ export default function Home() {
               Three steps to your new headshots
             </h2>
           </div>
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
+          <Reveal className="mt-12 grid gap-8 sm:grid-cols-3">
             {steps.map((s, i) => (
               <div key={s.title} className="relative text-center">
                 <div className="mx-auto flex size-14 items-center justify-center rounded-2xl border border-border bg-background text-primary">
@@ -252,7 +253,7 @@ export default function Home() {
                 <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -266,9 +267,9 @@ export default function Home() {
             Generate any combination of looks and pick your favorites.
           </p>
         </div>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <Reveal className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {styles.map((s) => (
-            <div key={s.name} className="group overflow-hidden rounded-2xl border border-border bg-card">
+            <div key={s.name} className="group overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
               <div className="aspect-square overflow-hidden bg-muted">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -284,7 +285,7 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </div>
+        </Reveal>
       </section>
 
       {/* Pricing */}
@@ -298,12 +299,12 @@ export default function Home() {
               Buy credits once, use them on any style. No subscriptions.
             </p>
           </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {packages.map((p) => (
               <div
                 key={p.name}
-                className={`relative flex flex-col rounded-2xl border bg-background p-6 ${
-                  p.popular ? "border-primary ring-1 ring-primary" : "border-border"
+                className={`relative flex flex-col rounded-2xl border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+                  p.popular ? "border-primary ring-1 ring-primary" : "border-border hover:border-primary/40"
                 }`}
               >
                 {p.popular && (
@@ -338,13 +339,13 @@ export default function Home() {
                 </Link>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Final CTA */}
       <section className="mx-auto max-w-6xl px-4 py-20">
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-16 text-center">
+        <Reveal className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-16 text-center">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-x-0 top-0 mx-auto h-40 max-w-md rounded-full bg-primary/20 blur-3xl"
@@ -363,7 +364,7 @@ export default function Home() {
               </Button>
             </Link>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Footer */}
